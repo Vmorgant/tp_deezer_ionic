@@ -1,17 +1,36 @@
-<ion-header>
+<ion-header >
   <ion-navbar>
     <ion-title>Home</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <h2>Welcome to Ionic!</h2>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
-  </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+  <ion-row>
+    <ion-input type="text" [(ngModel)]="name" placeholder="Enter an artist"></ion-input>
+    <button ion-button round icon-only (click)="getItems()"><ion-icon name="search"></ion-icon></button>
+  </ion-row>
+  <ion-card *ngFor="let artist of artists" >
+
+    <ion-item >
+      <ion-avatar item-start>
+        <img src="{{artist.picture_small}}">
+      </ion-avatar>
+      <ion-title>{{ artist.name }}</ion-title>
+      <a href={{artist.link}}></a>
+    </ion-item>
+
+    <ion-row>
+      <ion-col>
+        <ion-icon name="thumbs-up"></ion-icon>
+        <div>{{artist.nb_fan}} Fans</div>
+      </ion-col>
+      <ion-col>
+        <button ion-button icon-start clear small (click)="getAlbum(artist.name)">
+          <ion-icon name="disc"></ion-icon>
+          <div>{{artist.nb_album}} Albums</div>
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-card>
 </ion-content>
+

@@ -1,0 +1,30 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Album from {{name}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+<ion-content padding>
+
+  <ion-card *ngFor="let album of albums" >
+
+    <ion-item>
+      <ion-avatar item-start>
+        <img src="{{album.cover}}">
+      </ion-avatar>
+      <ion-title>{{ album.title }}</ion-title>
+      <p *ngIf="album.explicit_lyrics==true">Explicit</p>
+    </ion-item>
+
+    <ion-row>
+      <ion-col>
+        <button ion-button icon-start clear small (click)="getTracks(album.title)">
+          <ion-icon name="headset"></ion-icon>
+          <div>{{album.nb_tracks}} Tracks</div>
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+
+</ion-content>
